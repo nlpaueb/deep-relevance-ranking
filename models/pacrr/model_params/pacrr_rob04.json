@@ -1,0 +1,40 @@
+{
+	"maxqlen": 5,
+	"simdim": 1000,
+
+	"distill": "firstk",
+	"winlen": 3,	
+	"nfilter": 16,
+	"kmaxpool": 2,								
+	"combine": 70,											
+	"td": false,
+	"use_bm25": true,
+	"bm25_norm": "zscore",
+
+	"padding_mode": "post",
+
+	"use_overlap_features": true,
+
+	"hidden_size": 50,
+	"word_emb_dim": 200,
+
+	"use_termbm25": false,
+	"termbm25_norm": "None",
+
+	"epochs": 100,												
+	"train_batch_size": 32,
+	"predict_batch_size": 128,								
+
+	"qproximity": 0,											
+	"context": false,											
+	"shuffle": false,											
+	"xfilters": [],	
+	"cascade": 100,	
+
+	"binmat": false,
+	"numneg": 1,
+	"ud": 0,
+	"ut": 0,
+
+	"bi_rnn_out_dropout": 0.3
+}

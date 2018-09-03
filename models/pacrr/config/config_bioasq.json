@@ -1,0 +1,15 @@
+{
+
+		
+		"IDF_FILE": "../../bioasq_data/IDF.pkl",
+
+		"WORD_EMBEDDINGS_FILE": "../../bioasq_data/pubmed2018_w2v_200D.bin",
+
+		"QRELS_TRAIN": "../../bioasq_data/bioasq.train.json",
+
+		"QRELS_DEV": "../../bioasq_data/bioasq.dev.json",
+
+		"QRELS_TEST": "../../bioasq_data/bioasq.test.json"
+
+
+}

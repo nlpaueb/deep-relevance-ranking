@@ -1,0 +1,13 @@
+{
+		
+		"IDF_FILE": "../../robust04_data/IDF.pkl",
+
+		"WORD_EMBEDDINGS_FILE": "../../robust04_data/rob04_w2v_200D_sg.bin",
+
+		"QRELS_TRAIN": "../../robust04_data/split_[i]/rob04.train.s[i].json",
+
+		"QRELS_DEV": "../../robust04_data/split_[i]/rob04.dev.s[i].json",
+
+		"QRELS_TEST": "../../robust04_data/split_[i]/rob04.test.s[i].json"
+		
+}
