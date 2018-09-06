@@ -21,7 +21,7 @@
 	"use_termbm25": false,
 	"termbm25_norm": "None",
 
-	"epochs": 100,												
+	"epochs": 50,												
 	"train_batch_size": 32,
 	"predict_batch_size": 128,								
 

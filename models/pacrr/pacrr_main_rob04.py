@@ -32,12 +32,8 @@ from utils.rob04_utils import *
 parser = argparse.ArgumentParser()
 parser.add_argument('-config', dest='config_file')
 parser.add_argument('-params', dest='params_file')
-parser.add_argument('-dir', dest='out_dir')
+parser.add_argument('-log', dest='log_name', default='run')
 args = parser.parse_args()
-
-print(args.config_file)
-print(args.params_file)
-print(args.out_dir)
 
 config_file = args.config_file
 params_file = args.params_file
@@ -146,7 +142,7 @@ for fold in range(1, 6):
 	#Random shuffle training pairs
 	train_pairs = shuffle_train_pairs(train_pairs)
 
-	retr_dir = os.path.join('logs', datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + '_' + args.out_dir)
+	retr_dir = os.path.join('logs', args.log_name + '_' + datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
 	print(retr_dir)
 	os.makedirs(os.path.join(os.getcwd(), retr_dir))
 
