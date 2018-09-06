@@ -24,15 +24,9 @@ def format_bioasq2treceval_qret(bioasq_data, system_name, filename):
 				rank += 1
 
 def trec_evaluate(qrels_file, qret_file):
-	VERSION = '9.0'
-	if VERSION == '8.1':
-		trec_eval_res = subprocess.Popen(
-			[os.path.dirname(os.path.realpath(__file__)) + '/trec_eval.8.1/./trec_eval', '-a', qrels_file, qret_file],
-			stdout=subprocess.PIPE, shell=False)
-	elif VERSION == '9.0':
-		trec_eval_res = subprocess.Popen(
-			[os.path.dirname(os.path.realpath(__file__)) + '/trec_eval.9.0/./trec_eval', '-m', 'all_trec', qrels_file, qret_file],
-			stdout=subprocess.PIPE, shell=False)
+	trec_eval_res = subprocess.Popen(
+		[os.path.dirname(os.path.realpath(__file__)) + '/trec_eval.9.0/./trec_eval', '-m', 'all_trec', qrels_file, qret_file],
+		stdout=subprocess.PIPE, shell=False)
 
 	(out, err) = trec_eval_res.communicate()
 	trec_eval_res = out.decode("utf-8")
