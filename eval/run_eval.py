@@ -18,14 +18,14 @@ def format_bioasq2treceval_qret(bioasq_data, system_name, filename):
 		for q in bioasq_data['questions']:
 			rank = 1
 			for d in q['documents']:
-				sim = (len(q['documents']) + 1 - rank) / float(len(q['documents'])) # Just a fake similarity. Does not affect the metrics we are using.
+				sim = (len(q['documents']) + 1 - rank) / float(len(q['documents']))
 				f.write('{0} {1} {2} {3} {4} {5}'.format(q['id'], 0, d, rank, sim, system_name))
 				f.write('\n')
 				rank += 1
 
 def trec_evaluate(qrels_file, qret_file):
 	trec_eval_res = subprocess.Popen(
-		[os.path.dirname(os.path.realpath(__file__)) + '/trec_eval.9.0/./trec_eval', '-m', 'all_trec', qrels_file, qret_file],
+		[os.path.dirname(os.path.realpath(__file__)) + '/./trec_eval', '-m', 'all_trec', qrels_file, qret_file],
 		stdout=subprocess.PIPE, shell=False)
 
 	(out, err) = trec_eval_res.communicate()
