@@ -21,13 +21,7 @@ For each dataset, the following data are provided (among other files):
 
 *Note: Downloading time may vary depending on server availability.*
 
-
-**Step 2**: Download and build the evaluation script:
-```
-sh get_eval_tool.sh
-```
-
-**Step 3**: Navigate to a models directory to train the specific model and evaluate its performance on the test set. E.g. navigate to the PACRR (and PACRR-DRMM) model:
+**Step 2**: Navigate to a models directory to train the specific model and evaluate its performance on the test set. E.g. navigate to the PACRR (and PACRR-DRMM) model:
 ```
 cd models/pacrr
 ```
