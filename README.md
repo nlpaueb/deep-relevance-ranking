@@ -25,6 +25,6 @@ For each dataset, the following data are provided (among other files):
 ```
 cd models/pacrr
 ```
-Consult the README file of each model for dedicated instructions (e.g. [instructions for PACRR](https://github.com/nlpaueb/deep-relevance-ranking/tree/master/models/pacrr#pacrr))..
+Consult the README file of each model for dedicated instructions (e.g. [instructions for PACRR](https://github.com/nlpaueb/deep-relevance-ranking/tree/master/models/pacrr#pacrr)).
 
 (Under construction.)
