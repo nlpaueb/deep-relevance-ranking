@@ -3,7 +3,6 @@ import sys
 import json
 import copy
 import keras
-import shutil
 import pickle
 import gensim
 import random

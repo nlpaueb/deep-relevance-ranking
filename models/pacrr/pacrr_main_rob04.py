@@ -3,7 +3,6 @@ import sys
 import json
 import copy
 import keras
-import shutil
 import pickle
 import gensim
 import random
@@ -47,6 +46,8 @@ data_directory = '../../robust04_data'
 
 metrics = ['map', 'P_10', 'P_20', 'ndcg_cut_10', 'ndcg_cut_20']
 cv_results = defaultdict(list)
+
+root_retr_dir = os.path.join('logs', args.log_name + '_' + datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
 
 for fold in range(1, 6):
 
@@ -110,10 +111,6 @@ for fold in range(1, 6):
 	print('Producing Pos-Neg pairs for test data..')
 	test_pairs = produce_pos_neg_pairs(data_test, docset_test, idf, term2ind, model_params, q_preproc_rob04, d_preproc_rob04)
 
-	tmp_dir = 'temp'
-	if not os.path.exists(tmp_dir):
-	    os.makedirs(tmp_dir)
-
 	# Produce reranking inputs for the development subset of queries.
 	print('Producing reranking data for dev..')
 	dev_reranking_data = produce_reranking_inputs(data_dev, docset_dev, idf, term2ind, model_params, q_preproc_rob04, d_preproc_rob04)
@@ -125,7 +122,7 @@ for fold in range(1, 6):
 	#Random shuffle training pairs
 	train_pairs = shuffle_train_pairs(train_pairs)
 
-	retr_dir = os.path.join('logs', args.log_name, 'split_{0}'.format(fold))
+	retr_dir = os.path.join(root_retr_dir, 'split_{0}'.format(fold))
 	print(retr_dir)
 	os.makedirs(os.path.join(os.getcwd(), retr_dir))
 
