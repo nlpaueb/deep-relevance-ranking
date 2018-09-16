@@ -41,7 +41,7 @@ params_file = args.params_file
 with open(params_file, 'r') as f:
 	model_params = json.load(f)  
 
-topk = 100
+topk = 1000
 
 data_directory = '../../robust04_data'
 
@@ -114,35 +114,18 @@ for fold in range(1, 6):
 	if not os.path.exists(tmp_dir):
 	    os.makedirs(tmp_dir)
 
-	uid = uuid.uuid4().hex
-	u_tmp_dir = os.path.join(tmp_dir, uid)
-	if not os.path.exists(u_tmp_dir):
-	    os.makedirs(u_tmp_dir)
-
 	# Produce reranking inputs for the development subset of queries.
 	print('Producing reranking data for dev..')
-	dev_rerank_path = os.path.join(u_tmp_dir, 'rob04.top{0}.dev_rerank.s{1}.pkl'.format(topk, fold))
 	dev_reranking_data = produce_reranking_inputs(data_dev, docset_dev, idf, term2ind, model_params, q_preproc_rob04, d_preproc_rob04)
-	with open(dev_rerank_path, 'wb') as f:
-		# This allows memory efficient reading of each query object.
-		pickler = pickle.Pickler(f, protocol=2)
-		for e in dev_reranking_data:
-			pickler.dump(e)
 
 	# Produce reranking inputs for the test subset of queries.
 	print('Producing reranking data for test..')
-	test_rerank_path = os.path.join(u_tmp_dir, 'rob04.top{0}.test_rerank.s{1}.pkl'.format(topk, fold))
 	test_reranking_data = produce_reranking_inputs(data_test, docset_test, idf, term2ind, model_params, q_preproc_rob04, d_preproc_rob04)
-	with open(test_rerank_path, 'wb') as f:
-		# This allows memory efficient reading of each query object.
-		pickler = pickle.Pickler(f, protocol=2)
-		for e in test_reranking_data:
-			pickler.dump(e)
 
 	#Random shuffle training pairs
 	train_pairs = shuffle_train_pairs(train_pairs)
 
-	retr_dir = os.path.join('logs', args.log_name + '_' + datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+	retr_dir = os.path.join('logs', args.log_name, 'split_{0}'.format(fold))
 	print(retr_dir)
 	os.makedirs(os.path.join(os.getcwd(), retr_dir))
 
@@ -151,8 +134,8 @@ for fold in range(1, 6):
 	with open(retr_dir+ '/{0}'.format(params_file.split('/')[-1]), 'w') as f:
 		json.dump(json_model_params, f, indent=4)
 
-	train_res = pacrr_train(train_pairs, dev_pairs, dev_rerank_path, term2ind, config, model_params, metrics, retr_dir)
-	test_res = pacrr_predict(*train_res, test_rerank_path, term2ind, config, model_params, metrics, retr_dir)
+	train_res = pacrr_train(train_pairs, dev_pairs, dev_reranking_data, term2ind, config, model_params, metrics, retr_dir)
+	test_res = pacrr_predict(*train_res, test_reranking_data, term2ind, config, model_params, metrics, retr_dir)
 
 	for k, v in test_res.items():
 		cv_results[k].append(v)
