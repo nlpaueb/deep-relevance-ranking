@@ -6,7 +6,15 @@ This software accompanies  the following paper:
 It contains the code of the deep relevance ranking models described in the paper, which can be used to rerank the top-k documents returned by a BM25 based search engine.
 
 # Instructions
-**Step 1**: Download the dataset(s) you intend to use (BioASQ and/or TREC ROBUST2004). 
+This is a Python 3.6 project.
+
+**Step 1**: Install the required Python packages: 
+
+```
+pip3 install -r requirements.txt
+```
+
+**Step 2**: Download the dataset(s) you intend to use (BioASQ and/or TREC ROBUST2004). 
 
 ```
 sh get_bioasq_data.sh
@@ -21,7 +29,7 @@ For each dataset, the following data are provided (among other files):
 
 *Note: Downloading time may vary depending on server availability.*
 
-**Step 2**: Navigate to a models directory to train the specific model and evaluate its performance on the test set. E.g. navigate to the PACRR (and PACRR-DRMM) model:
+**Step 3**: Navigate to a models directory to train the specific model and evaluate its performance on the test set. E.g. navigate to the PACRR (and PACRR-DRMM) model:
 ```
 cd models/pacrr
 ```
