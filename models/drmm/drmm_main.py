@@ -137,7 +137,6 @@ for epoch in range(40):
       score = model.GetQDScore(qwds, qvecs, qconv, dwds, dvecs, dconv,
                                efeats_fv)
       rel_scores[j] = score.value()
-      dy.renew_cg()
 
     top = heapq.nlargest(100, rel_scores, key=rel_scores.get)
     utils.JsonPredsAppend(json_preds, data, i, top)
