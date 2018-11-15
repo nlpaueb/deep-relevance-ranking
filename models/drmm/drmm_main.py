@@ -11,9 +11,9 @@ dataloc = '../../bioasq_data/'
 print('Loading Data')
 exp_name = 'posit'
 
-with open(dataloc + 'bioasq_bm25_top100.test.pkl', 'rb') as f:
+with open(dataloc + 'bioasq_bm25_top100.dev.pkl', 'rb') as f:
   data = pickle.load(f)
-with open(dataloc + 'bioasq_bm25_docset_top100.test.pkl', 'rb') as f:
+with open(dataloc + 'bioasq_bm25_docset_top100.dev.pkl', 'rb') as f:
   docs = pickle.load(f)
 with open(dataloc + 'bioasq_bm25_top100.train.pkl', 'rb') as f:
   tr_data = pickle.load(f)

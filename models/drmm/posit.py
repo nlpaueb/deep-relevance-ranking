@@ -45,7 +45,7 @@ class Model:
     self.W_gate = self.model.add_parameters((1, self.conv_dim + 1))
 
     self.biRNN = dy.BiRNNBuilder(2, self.conv_dim, self.conv_dim, self.model,
-                                 dy.VanillaLSTMBuilder)
+                                 dy.LSTMBuilder)
 
     self.W_term1 = self.model.add_parameters((8, 6))
     self.b_term1 = self.model.add_parameters((8))
