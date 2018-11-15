@@ -51,7 +51,7 @@ class Model:
     self.b_term1 = self.model.add_parameters((8))
     self.W_term = self.model.add_parameters((1, 8))
 
-    self.W_final = self.model.add_parameters((1, 5))
+    self.W_final = self.model.add_parameters((1, 6))
 
   def Save(self, filename):
     self.model.save(filename)
@@ -125,7 +125,7 @@ class Model:
     dwords = self.get_words(dtext)
     qd1 = self.query_doc_overlap(qwords, dwords)
     bm25 = [bm25]
-    return qd1[0:3] + bm25
+    return qd1 + bm25
 
   def Cosine(self, v1, v2):
     return dy.cdiv(dy.dot_product(v1, v2),
@@ -220,6 +220,7 @@ class Model:
       print('ERROR IN POS EXAMPLE SIZE')
       print(len(pos))
     loss.append(dy.hinge(dy.concatenate(pos + neg), 0))
+
 
   def UpdateBatch(self, loss):
     if len(loss) > 0:
